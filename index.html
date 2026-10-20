@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17131d">
+<title>Lo siento ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #17131d;
+  --panel: #231d29;
+  --pink: #efa6bb;
+  --text: #f8edf2;
+  --muted: #b9abbc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button { font: inherit; }
+
+.background {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 38%, #5a344b45, transparent 46%),
+    linear-gradient(145deg, #17131d, #211923 55%, #14121a);
+}
+
+.glow-bg {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  background: #e99bb91c;
+  filter: blur(85px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+main {
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.card {
+  position: relative;
+  width: min(100%, 390px);
+  padding: 24px 24px 20px;
+  border-radius: 25px;
+  border: 1px solid #f2c5d318;
+  background: linear-gradient(145deg, #2b2330, #201a26);
+  box-shadow: 0 25px 90px #00000042;
+  text-align: center;
+  overflow: hidden;
+  animation: enter .65s ease both;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 1.5px;
+  color: #ad9bae;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e9a6ba;
+  box-shadow: 0 0 9px #e9a6ba;
+}
+
+h1 {
+  margin: 25px 0 9px;
+  font-size: clamp(27px, 7vw, 33px);
+  line-height: 1.13;
+  letter-spacing: -.9px;
+  font-weight: 500;
+}
+
+h1 span { color: var(--pink); }
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 270px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.heart-stage {
+  width: 100%;
+  height: 225px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 8px 0 0;
+}
+
+.heart-halo {
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background: #e99dbd16;
+  filter: blur(25px);
+  transition: background .8s, transform .8s;
+}
+
+.heart-svg {
+  width: 184px;
+  max-width: 72%;
+  height: auto;
+  overflow: visible;
+  position: relative;
+}
+
+.heart-half {
+  transform-box: view-box;
+  transition: transform .85s cubic-bezier(.2,.75,.25,1);
+}
+
+#leftHalf {
+  transform: translate(-8px, 5px) rotate(-3deg);
+  transform-origin: 100px 90px;
+}
+
+#rightHalf {
+  transform: translate(8px, -3px) rotate(3deg);
+  transform-origin: 100px 90px;
+}
+
+.heart-svg.repaired #leftHalf,
+.heart-svg.repaired #rightHalf {
+  transform: translate(0, 0) rotate(0);
+}
+
+.heart-svg.repaired #wholeHeart {
+  opacity: 1;
+}
+
+.heart-svg.repaired #leftHalf,
+.heart-svg.repaired #rightHalf {
+  opacity: 0;
+}
+
+#wholeHeart {
+  opacity: 0;
+  transition: opacity .65s ease;
+}
+
+.heart-svg.repaired #wholeHeart {
+  opacity: 1;
+}
+
+#wholeHeart {
+  transform-origin: center;
+  animation: heartBeat 2.1s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.045); }
+  24% { transform: scale(1); }
+  36% { transform: scale(1.025); }
+}
+
+.heart-caption {
+  min-height: 16px;
+  color: #d8adbf;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  margin-top: -1px;
+}
+
+.separator {
+  height: 1px;
+  margin: 18px 0;
+  background: linear-gradient(90deg, transparent, #efb5ca30, transparent);
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #aa9aaf;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .7px;
+  margin-bottom: 9px;
+}
+
+.track {
+  height: 3px;
+  background: #ffffff0c;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.track-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #bd8ca8, #f5c1d1);
+  transition: width .5s ease;
+}
+
+.message {
+  min-height: 48px;
+  margin: 15px 0 2px;
+  font-size: 13px;
+  line-height: 1.7;
+  font-weight: 300;
+  color: #d2c4d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action {
+  width: 100%;
+  min-height: 47px;
+  margin-top: 10px;
+  padding: 13px 15px;
+  border: 1px solid #ffd4e266;
+  border-radius: 13px;
+  background: linear-gradient(110deg, #f5c1d0, #e8a4bd);
+  color: #38202d;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s, filter .2s;
+}
+
+.action:hover { filter: brightness(1.06); }
+.action:active { transform: scale(.97); }
+.action:focus-visible,
+.reset:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+.footer {
+  margin-top: 16px;
+  color: #807486;
+  font: 8px 'DM Mono', monospace;
+  letter-spacing: 1.1px;
+}
+
+.final {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #17131df5;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s, visibility .6s;
+}
+
+.final.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.final-inner {
+  width: min(100%, 330px);
+  text-align: center;
+  transform: translateY(12px);
+  transition: transform .6s;
+}
+
+.final.show .final-inner { transform: translateY(0); }
+
+.final-heart {
+  font-size: 76px;
+  line-height: 1.4;
+  color: #f2b1c7;
+  text-shadow: 0 0 35px #eaa0bb40;
+  animation: heartBeat 2s infinite;
+}
+
+.final-label {
+  margin-top: 13px;
+  font: 9px 'DM Mono', monospace;
+  color: #c4a3b7;
+  letter-spacing: 2px;
+}
+
+.final h2 {
+  margin: 18px 0 12px;
+  font-size: 39px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+.final p {
+  margin: 0;
+  color: #c5b7ca;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2;
+}
+
+.final p strong {
+  color: #f1bfd0;
+  font-weight: 500;
+}
+
+.final-note {
+  margin: 23px auto;
+  padding: 11px 14px;
+  width: fit-content;
+  border: 1px solid #efb9cc26;
+  border-radius: 10px;
+  color: #d9b7c6;
+  font-size: 11px;
+}
+
+.reset {
+  padding: 11px 17px;
+  border: 1px solid #ffffff22;
+  border-radius: 30px;
+  background: transparent;
+  color: #b7a7bb;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.particle {
+  position: fixed;
+  z-index: 9;
+  pointer-events: none;
+  color: #ffd4e1;
+  animation: floatAway 1.15s ease-out forwards;
+}
+
+@keyframes floatAway {
+  from { opacity: 0; transform: translate(0, 0) scale(.5); }
+  15% { opacity: 1; }
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(40deg);
+  }
+}
+
+@media (max-height: 700px) {
+  main { padding: 8px 14px; }
+  .card { padding: 17px 20px 14px; }
+  h1 { margin-top: 17px; font-size: 27px; }
+  .heart-stage { height: 165px; }
+  .heart-svg { width: 145px; }
+  .separator { margin: 12px 0; }
+  .message { min-height: 39px; margin-top: 10px; }
+  .action { min-height: 43px; margin-top: 7px; }
+  .footer { margin-top: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="background"></div>
+<div class="glow-bg"></div>
+
+<main>
+  <section class="card">
+    <header class="top">
+      <span>PARA TI / 001</span>
+      <span class="status">DE CORAZÓN</span>
+    </header>
+
+    <h1>No debí hacerte<br><span>sentir así.</span></h1>
+
+    <p class="subtitle">
+      No quiero justificar lo que pasó.<br>
+      Solo quiero que sepas que lo siento.
+    </p>
+
+    <div class="heart-stage">
+      <div class="heart-halo" id="halo"></div>
+
+      <svg
+        class="heart-svg"
+        id="heart"
+        viewBox="0 0 200 180"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Un corazón que vuelve a unirse"
+      >
+        <defs>
+          <linearGradient id="leftColor" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffd9e5"/>
+            <stop offset="48%" stop-color="#efa6bd"/>
+            <stop offset="100%" stop-color="#bf7897"/>
+          </linearGradient>
+
+          <linearGradient id="rightColor" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f9c4d6"/>
+            <stop offset="55%" stop-color="#e89ab5"/>
+            <stop offset="100%" stop-color="#bc7595"/>
+          </linearGradient>
+
+          <linearGradient id="wholeColor" x1="0" y1="0" x2="0.8" y2="1">
+            <stop offset="0%" stop-color="#ffe0e9"/>
+            <stop offset="45%" stop-color="#f4b0c7"/>
+            <stop offset="100%" stop-color="#d986a7"/>
+          </linearGradient>
+
+          <path id="heartShape"
+            d="M100 164
+               C88 152 18 105 18 57
+               C18 28 39 12 62 12
+               C80 12 93 23 100 38
+               C107 23 120 12 138 12
+               C161 12 182 28 182 57
+               C182 105 112 152 100 164 Z"/>
+
+          <clipPath id="heartClip">
+            <use href="#heartShape"/>
+          </clipPath>
+
+          <clipPath id="leftClip">
+            <rect x="0" y="0" width="100" height="180"/>
+          </clipPath>
+
+          <clipPath id="rightClip">
+            <rect x="100" y="0" width="100" height="180"/>
+          </clipPath>
+        </defs>
+
+        <!-- Mitad izquierda -->
+        <g class="heart-half" id="leftHalf">
+          <g clip-path="url(#leftClip)">
+            <use href="#heartShape" fill="url(#leftColor)"/>
+            <path d="M25 55 C35 25 65 24 79 43"
+              fill="none" stroke="#fff0f5" stroke-opacity=".45"
+              stroke-width="3" stroke-linecap="round"/>
+            <path d="M32 80 C43 106 67 124 88 143"
+              fill="none" stroke="#a45e7b" stroke-opacity=".22"
+              stroke-width="2"/>
+          </g>
+        </g>
+
+        <!-- Mitad derecha -->
+        <g class="heart-half" id="rightHalf">
+          <g clip-path="url(#rightClip)">
+            <use href="#heartShape" fill="url(#rightColor)"/>
+            <path d="M112 43 C132 20 163 30 173 52"
+              fill="none" stroke="#fff0f5" stroke-opacity=".35"
+              stroke-width="3" stroke-linecap="round"/>
+            <path d="M112 142 C140 120 165 94 172 74"
+              fill="none" stroke="#a45e7b" stroke-opacity=".2"
+              stroke-width="2"/>
+          </g>
+        </g>
+
+        <!-- Corazón completo -->
+        <g id="wholeHeart">
+          <use href="#heartShape"
+            fill="url(#wholeColor)"
+            stroke="#ffdce7"
+            stroke-opacity=".75"
+            stroke-width="1.2"/>
+
+          <path d="M32 54 C36 33 52 25 68 28"
+            fill="none"
+            stroke="#fff7fa"
+            stroke-opacity=".7"
+            stroke-width="3"
+            stroke-linecap="round"/>
+
+          <path d="M35 65 C41 84 56 97 70 108"
+            fill="none"
+            stroke="#fff4f8"
+            stroke-opacity=".15"
+            stroke-width="2"
+            stroke-linecap="round"/>
+        </g>
+
+        <!-- La grieta desaparece al unir el corazón -->
+        <path id="crack"
+          d="M99 37 L105 55 L96 72 L104 89 L96 108 L103 124 L99 141"
+          fill="none"
+          stroke="#694052"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity=".95"/>
+      </svg>
+    </div>
+
+    <div class="heart-caption" id="caption">
+      NO QUIERO HACER COMO SI NADA.
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="progress-row">
+      <span id="stageName">RECONOCER</span>
+      <span id="counter">01 / 03</span>
+    </div>
+
+    <div class="track">
+      <div class="track-fill" id="fill"></div>
+    </div>
+
+    <p class="message" id="message" aria-live="polite">
+      Sé que no basta con decirlo.
+    </p>
+
+    <button class="action" id="action">
+      Quiero reconocerlo →
+    </button>
+
+    <footer class="footer">SIN EXCUSAS. CON SINCERIDAD.</footer>
+  </section>
+</main>
+
+<section class="final" id="final" aria-hidden="true">
+  <div class="final-inner">
+    <div class="final-heart">♡</div>
+    <div class="final-label">NO HAY EXCUSAS QUE DAR</div>
+    <h2>Lo siento.</h2>
+
+    <p>
+      No debí hacerte sentir así.<br>
+      <strong>Lo que sientes me importa.</strong><br>
+    </p>
+
+    <div class="final-note">
+      Te amo. ♡
+    </div>
+
+    <button class="reset" id="reset">VOLVER A EMPEZAR ↺</button>
+  </div>
+</section>
+
+<script>
+(() => {
+  'use strict';
+
+  const heart = document.getElementById('heart');
+  const halo = document.getElementById('halo');
+  const crack = document.getElementById('crack');
+  const caption = document.getElementById('caption');
+  const stageName = document.getElementById('stageName');
+  const counter = document.getElementById('counter');
+  const fill = document.getElementById('fill');
+  const message = document.getElementById('message');
+  const action = document.getElementById('action');
+  const final = document.getElementById('final');
+  const reset = document.getElementById('reset');
+
+  const stages = [
+    {
+      name: 'RECONOCER',
+      caption: 'NO QUIERO HACER COMO SI NADA.',
+      message: 'Sé que no basta con decirlo.',
+      button: 'Quiero reconocerlo →'
+    },
+    {
+      name: 'HACERME RESPONSABLE',
+      caption: 'LO QUE SIENTES SÍ IMPORTA.',
+      message: 'No quiero minimizar cómo te hice sentir.',
+      button: 'Quiero hacerlo mejor →'
+    },
+    {
+      name: 'DEMOSTRARLO',
+      caption: 'EL CAMBIO SE DEMUESTRA CON HECHOS.',
+      message: 'Quiero que mis acciones acompañen mis palabras.',
+      button: 'Un último detalle ♡'
+    }
+  ];
+
+  let step = 0;
+  let completed = false;
+
+  function setHeartState(repaired) {
+    heart.classList.toggle('repaired', repaired);
+    halo.style.transform = repaired
+      ? 'scale(1.25)'
+      : 'scale(1)';
+
+    halo.style.background = repaired
+      ? '#e99dbd2b'
+      : '#e99dbd16';
+
+    crack.style.transition = 'opacity .65s ease';
+    crack.style.opacity = repaired ? '0' : '0.95';
+  }
+
+  function render() {
+    const current = stages[step];
+
+    stageName.textContent = current.name;
+    counter.textContent =
+      String(step + 1).padStart(2, '0') + ' / 03';
+
+    fill.style.width = ((step + 1) / 3 * 100) + '%';
+    caption.textContent = current.caption;
+    message.textContent = current.message;
+    action.textContent = current.button;
+
+    setHeartState(step >= 1);
+  }
+
+  function burst() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const rect = heart.getBoundingClientRect();
+    const symbols = ['♡', '✦', '·'];
+
+    for (let i = 0; i < 14; i++) {
+      const particle = document.createElement('span');
+
+      particle.className = 'particle';
+      particle.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+      particle.style.left = (rect.left + rect.width / 2) + 'px';
+      particle.style.top = (rect.top + rect.height / 2) + 'px';
+      particle.style.setProperty(
+        '--dx', ((Math.random() - 0.5) * 150) + 'px'
+      );
+      particle.style.setProperty(
+        '--dy', ((Math.random() - 0.5) * 130) + 'px'
+      );
+
+      document.body.appendChild(particle);
+      particle.addEventListener('animationend', () => particle.remove());
+    }
+  }
+
+  function showFinal() {
+    final.classList.add('show');
+    final.setAttribute('aria-hidden', 'false');
+    burst();
+  }
+
+  function hideFinal() {
+    final.classList.remove('show');
+    final.setAttribute('aria-hidden', 'true');
+  }
+
+  action.addEventListener('click', () => {
+    if (completed) {
+      showFinal();
+      return;
+    }
+
+    if (step < 2) {
+      step++;
+      render();
+      burst();
+    } else {
+      completed = true;
+      showFinal();
+    }
+  });
+
+  reset.addEventListener('click', () => {
+    hideFinal();
+    step = 0;
+    completed = false;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
